@@ -1,0 +1,17 @@
+public static Class<? extends GameObject>[] getCollisionList(){
+		throw new IllegalStateException(" GameObject.getCollisionList() should be overidden by its subclasses");
+	}
+
+transparency:
+http://java.sun.com/products/jfc/tsc/articles/swing2d/index.html
+
+
+
+
+todo:
+
+transparent
+multiple rooms
+Alarm objects
+animation
+load ALL images beforehand
