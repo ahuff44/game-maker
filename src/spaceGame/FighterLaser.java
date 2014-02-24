@@ -21,9 +21,19 @@ public class FighterLaser extends Laser {
 	
 	
 
+	public static Class<? extends GameObject>[] getCollisionList(){
+		Class<?>[] list = {EnemyLaser.class};
+		return (Class<? extends GameObject>[]) list;
+	}
+	
 	@Override
 	public void collisionEvent(GameObject other) {
-		if (other instanceof Enemy){
+		if (other instanceof EnemyLaser){
+			destroy();
+			other.destroy();
+			new Explosion(getMotion().getPosition());
+		}
+		else if (other instanceof Enemy){
 			destroy();
 			other.destroy();
 		}

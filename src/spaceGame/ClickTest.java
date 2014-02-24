@@ -1,5 +1,6 @@
 package spaceGame;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyEvent;

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import gameMaker.*;
 
 
-public class Snake extends GameObject implements HasKeyEvent{
+public class Snake extends GameObject implements HasKeyEvent, HasAlarmEvent{
 	
 	
 	
@@ -20,12 +20,11 @@ public class Snake extends GameObject implements HasKeyEvent{
 	private static final Image imgLeft = GraphicsController.getImage("head\\left.png");
 	private static final Image imgDown = GraphicsController.getImage("head\\down.png");
 	
-	int dir = 0;
+	private int dir = 0;
 	private ArrayList<Body> body;
-	private Alarm moveAlarm;
-	private Alarm growAlarm;
+	private AlarmController alarmController;
 	
-		private boolean grow = true;
+	private boolean grow = true;
 	
 	//constructors
 	
@@ -35,27 +34,6 @@ public class Snake extends GameObject implements HasKeyEvent{
 		super(true, p, imgRight);
 		body = new ArrayList<Body>();
 		body.add(tail);
-		moveAlarm = new Alarm(this){
-			
-			@Override
-			public void run(){
-				move();
-				reset();
-			}
-			
-		};
-
-		growAlarm = new Alarm(this){
-			
-			@Override
-			public void run(){
-				if (grow)
-					grow();
-				reset();
-			}
-			
-		};
-		
 	}
 	
 	
@@ -197,10 +175,28 @@ public class Snake extends GameObject implements HasKeyEvent{
 	}
 	
 	public void createEvent() {
-		AlarmController.setAlarm(moveAlarm, 5);
-		AlarmController.setAlarm(growAlarm, 30);
+		alarmController = new AlarmController(this);
+		alarmController.setAlarm(0, 5); //move
+		alarmController.setAlarm(1, 30); //grow
 	}
 	
 	public void destroyEvent() {}
-		
+	
+	public AlarmController getAlarmController(){
+		return alarmController;
+	}
+	
+	public void alarmEvent(int alarmId){
+		switch (alarmId){
+		case 0:
+			move();
+			alarmController.resetAlarm(alarmId);
+			break;
+		case 1:
+			if (grow)
+				grow();
+			alarmController.resetAlarm(alarmId);
+		}
+	}
+
 }

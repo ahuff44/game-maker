@@ -37,18 +37,23 @@ public class Room1 implements Room {
 	
 	@Override
 	public void load() {
-		new BirdController();
+		new EnemyController();
 		new Hunter(new Point(320, 240));
 	}
 
 	@Override
-	public Dimension dimension(){
+	public Dimension getSize(){
 		return new Dimension(640, 480);
 	}
 
 	@Override
 	public BackgroundType backgroundType(){
 		return bType;
+	}
+	
+	@Override
+	public Dimension getGrid() {
+		return new Dimension(16, 16);
 	}
 
 }

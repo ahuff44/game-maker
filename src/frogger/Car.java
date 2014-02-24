@@ -6,7 +6,7 @@ import gameMaker.*;
 
 public class Car extends GameObject {
 
-	private static final Image carImg = GraphicsController.getImage("head.gif");
+	private static final Image carImg = GraphicsController.getImage("car.png");
 
 	public Car(Motion m){
 		super(true, m, new Sprite(carImg, 50));
@@ -19,8 +19,8 @@ public class Car extends GameObject {
 	
 	@Override
 	public void collisionEvent(GameObject other) {
-		//if (other instanceof Car)
-		//	destroy();
+//		if (other instanceof Car)
+//			destroy();
 	}
 
 	@Override

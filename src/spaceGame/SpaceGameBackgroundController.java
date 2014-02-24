@@ -18,17 +18,7 @@ public class SpaceGameBackgroundController extends GameController{
 	}
 	
 	@Override
-	public void initialize() {
-		{
-		//TODO this block should be in GameController or ObjectController, and it should create collision groups automatically	
-			//Enemy.initializeCollisionList();  TODO make it work
-			//this is not what it should be, but it work:s
-				//ObjectController.addCollisionGroup(new CollisionGroup(Laser.class, Ship.class, true));
-				//ObjectController.addCollisionGroup(new CollisionGroup(Enemy.class, false));
-				//ObjectController.addCollisionGroup(new CollisionGroup(Enemy.class, Explosion.class, false));
-
-		}
-				
+	public void initialize() {				
 		Room r = new Room1();
 		r.load();
 		setRoom(r);

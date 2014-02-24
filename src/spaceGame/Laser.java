@@ -13,7 +13,7 @@ public abstract class Laser extends GameObject{
 	}
 		
 	public static Class<? extends GameObject>[] getCollisionList(){
-		Class<?>[] list = {};
+		Class<?>[] list = {Ship.class};
 		return (Class<? extends GameObject>[]) list;
 	}
 	
@@ -34,9 +34,6 @@ public abstract class Laser extends GameObject{
 	}	
 
 	@Override
-	public void intersectBoundaryEvent() {
-		// TODO Auto-generated method stub
-
-	}
+	public void intersectBoundaryEvent() { }
 	
 }

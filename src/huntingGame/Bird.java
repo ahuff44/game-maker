@@ -13,8 +13,8 @@ public class Bird extends GameObject {
 
 	public Bird(Point position) {
 		super(true, position, birdImg);
-		setSpeed(6);
-		setDirection(Math.random() * 360);
+		getMotion().setSpeed(6);
+		getMotion().setDirection(Math.random() * 360);
 	}
 	
 	
@@ -25,8 +25,8 @@ public class Bird extends GameObject {
 	
 	@Override
 	public void intersectBoundaryEvent() {
-		gotoPreviousPosition();
-		changeDirection(90);
+		getMotion().gotoPreviousPosition();
+		getMotion().changeDirection(90);
 	}
 	
 	@Override
@@ -38,11 +38,16 @@ public class Bird extends GameObject {
 		return new Point(16, 16);
 	}
 	
+	public static Class<? extends GameObject>[] getCollisionList(){
+		Class<?>[] list = {Bird.class, Hunter.class};
+		return (Class<? extends GameObject>[]) list;
+	}
+
 	@Override
 	public void collisionEvent(GameObject other) {
 		if (other instanceof Hunter || other instanceof Bird){
-			gotoPreviousPosition();
-			changeDirection(90);
+			getMotion().gotoPreviousPosition();
+			getMotion().changeDirection(90);
 		}
 	}
 
@@ -54,7 +59,7 @@ public class Bird extends GameObject {
 
 	@Override
 	public void destroyEvent() {
-		BirdController.changeScore(10);
+		EnemyController.changeScore(10);
 	}
 
 }

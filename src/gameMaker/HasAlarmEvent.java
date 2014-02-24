@@ -3,12 +3,12 @@ package gameMaker;
 
 public interface HasAlarmEvent {
 	
-	//public AlarmController getAlarmController();
+	public AlarmController getAlarmController();
 
-	/* *
+	/**
 	 * This method is called by AlarmController when one if its alarms reaches zero.
-	 * @param a the Alarm that has just activated
+	 * @param alarmId The id of the alarm that was called
 	 */
-	//public void alarmEvent(Alarm a);
+	public void alarmEvent(int alarmId);
 	
 }

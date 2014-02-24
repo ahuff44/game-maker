@@ -52,7 +52,7 @@ public abstract class GameObject {
 	
 	
 	/**
-	 * Don't call this. Or I will kill you. It's only used by ObjectController. TODO block this from a game developer
+	 * DO NOT CALL THIS. It's only used by ObjectController. TODO block this from a game developer
 	 * @return the previous state of the boolean variable <code>alive</code>
 	 */
 	public boolean setAlive(boolean a){
@@ -285,7 +285,7 @@ public abstract class GameObject {
 		Class<? extends GameObject>[] collisionList;
 		try {
 			collisionList = (Class<? extends GameObject>[]) c.getDeclaredMethod("getCollisionList", null).invoke(null, new Object[] {});
-			System.out.println("adding " + c.getSimpleName() + "'s collision lists");
+			System.out.println("Adding " + c.getSimpleName() + "'s collision lists");
 			
 			ObjectController.initializeCollisionGroups(c, collisionList);
 		} catch (NoSuchMethodException e) {

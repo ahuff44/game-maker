@@ -1,5 +1,6 @@
 package spaceGame;
 
+import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -90,5 +91,8 @@ public class SpaceGameControllerObject extends GameObject implements HasKeyEvent
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void draw(Graphics g) { }
 
 }

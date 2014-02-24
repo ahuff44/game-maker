@@ -32,9 +32,14 @@ public class Hunter extends GameObject implements HasMouseEvent, HasKeyEvent, Ha
 	
 	
 	
+	public static Class<? extends GameObject>[] getCollisionList(){
+		Class<?>[] list = {Bird.class, Tiger.class};
+		return (Class<? extends GameObject>[]) list;
+	}
+
 	public void collisionEvent(GameObject other) {
 		if (other instanceof Bird || other instanceof Tiger)
-			gotoPreviousPosition();
+			getMotion().gotoPreviousPosition();
 	}
 
 	
@@ -51,7 +56,7 @@ public class Hunter extends GameObject implements HasMouseEvent, HasKeyEvent, Ha
 
 	
 	public void intersectBoundaryEvent() {
-		gotoPreviousPosition();
+		getMotion().gotoPreviousPosition();
 	}
 
 	
@@ -64,6 +69,12 @@ public class Hunter extends GameObject implements HasMouseEvent, HasKeyEvent, Ha
 		return new Point(16, 16);
 	}
 	
+	public void draw(Graphics g){
+		super.draw(g);
+		Point p = Utilities.mousePosition();
+		g.drawRect(p.x - 2, p.y - 2, 5, 5);
+	}
+
 	
 	
 	//HasMouseEvent:
@@ -84,11 +95,11 @@ public class Hunter extends GameObject implements HasMouseEvent, HasKeyEvent, Ha
 	}
 	
 	private void shoot() {
-		double dir = Utilities.pointDirection(getPosition(), target);
-		if (true){//if it's a shotgun
+		double dir = Utilities.pointDirection(getMotion().getPosition(), target);
+		if (true){//if it's a shotgun TODO add more weapons
 			final int scatterFactor = 20;
 			for (int i = 0; i < 4; i++)
-				new Shot(getPosition(), dir + Math.random() * scatterFactor * 2 - scatterFactor);
+				new Shot(getMotion().getPosition(), dir + Math.random() * scatterFactor * 2 - scatterFactor);
 		}
 	}
 
@@ -104,19 +115,19 @@ public class Hunter extends GameObject implements HasMouseEvent, HasKeyEvent, Ha
 		switch (code){
 		case KeyEvent.VK_LEFT:
 		case KeyEvent.VK_A:
-			changeX(-speed);
+			getMotion().changeX(-speed);
 			break;
 		case KeyEvent.VK_RIGHT:
 		case KeyEvent.VK_D:
-			changeX(speed);
+			getMotion().changeX(speed);
 			break;
 		case KeyEvent.VK_UP:
 		case KeyEvent.VK_W:
-			changeY(-speed);
+			getMotion().changeY(-speed);
 			break;
 		case KeyEvent.VK_DOWN:
 		case KeyEvent.VK_S:
-			changeY(speed);
+			getMotion().changeY(speed);
 			break;
 		}
 	}
@@ -141,6 +152,11 @@ public class Hunter extends GameObject implements HasMouseEvent, HasKeyEvent, Ha
 	
 
 	@Override
+	public AlarmController getAlarmController() {
+		return alarmController;
+	}
+	
+	@Override
 	public void alarmEvent(int alarmId) {
 		switch (alarmId){
 		case 0:
@@ -148,17 +164,6 @@ public class Hunter extends GameObject implements HasMouseEvent, HasKeyEvent, Ha
 			shoot();
 			alarmController.resetAlarm(0);
 		}
-	}
-
-	public void draw(Graphics g){
-		super.draw(g);
-		Point p = Utilities.mousePosition();
-		g.drawRect(p.x - 2, p.y - 2, 5, 5);
-	}
-
-	@Override
-	public AlarmController getAlarmController() {
-		return alarmController;
 	}
 
 }

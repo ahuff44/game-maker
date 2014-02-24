@@ -20,7 +20,11 @@ public class EnemyLaser extends Laser {
 	//Overridden methods
 	
 	
-
+	public static Class<? extends GameObject>[] getCollisionList(){
+		Class<?>[] list = {};
+		return (Class<? extends GameObject>[]) list;
+	}
+	
 	@Override
 	public void collisionEvent(GameObject other) {
 		if (other instanceof Fighter){

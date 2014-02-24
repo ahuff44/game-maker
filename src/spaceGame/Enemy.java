@@ -35,7 +35,7 @@ public class Enemy extends Ship{
 	
 
 	public static Class<? extends GameObject>[] getCollisionList(){
-		Class<?>[] list = {Enemy.class, Explosion.class};
+		Class<?>[] list = {Enemy.class};
 		return (Class<? extends GameObject>[]) list;
 	}
 	
@@ -55,16 +55,8 @@ public class Enemy extends Ship{
 		int[] speeds = {-3, 3};
 		getMotion().setHspeed(Utilities.choose(speeds));
 		
-		Alarm shoot = new Alarm(this){
-
-			@Override
-			public void run() {
-				reset();
-				shoot();
-			}
-			
-		};
-		AlarmController.setAlarm(shoot, 45);
+		alarmController = new AlarmController(this);
+		alarmController.setAlarm(0, 45);//shoot
 	}
 	
 	@Override
@@ -75,6 +67,23 @@ public class Enemy extends Ship{
 	
 	private void shoot(){
 		new EnemyLaser(getMotion().getPosition());
+	}
+
+
+
+	@Override
+	public AlarmController getAlarmController() {
+		return alarmController;
+	}
+
+	@Override
+	public void alarmEvent(int alarmId) {
+		switch (alarmId){
+		case 0: //shoot
+			shoot();
+			alarmController.resetAlarm(alarmId);
+			break;
+		}
 	}
 	
 }

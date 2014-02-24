@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import gameMaker.*;
 
 
-public class Frog extends GameObject implements HasKeyEvent {
+public class Frog extends GameObject implements HasKeyEvent, HasAlarmEvent {
 	
 	
 	
@@ -15,6 +15,8 @@ public class Frog extends GameObject implements HasKeyEvent {
 
 	
 	private static final Image frogImg = GraphicsController.getImage("frog.png");
+	private AlarmController alarmController;
+	private boolean canMove;
 	
 	
 	
@@ -62,8 +64,11 @@ public class Frog extends GameObject implements HasKeyEvent {
 		default: 
 			return;
 		}
-		if (Utilities.isInsideRoom(getMotion().relativePoint(p)))
+		if (canMove && Utilities.isInsideRoom(getMotion().relativePoint(p))){
 			getMotion().changePosition(p);
+			canMove = false;
+			alarmController.setAlarm(0, 10); //reset canMove
+		}
 	}
 	
 	public void keyPressed(Integer keyCode) {}
@@ -77,7 +82,27 @@ public class Frog extends GameObject implements HasKeyEvent {
 		destroy();
 	}
 	
-	public void createEvent() {}
+	public void createEvent() {
+		alarmController = new AlarmController(this);
+		canMove = true;
+	}
+	
+	
+	public AlarmController getAlarmController(){
+		return alarmController;
+	}
+	
+	
+	public void alarmEvent(int alarmId) {
+		switch (alarmId){
+		case 0:// reset canMove
+			canMove = true;
+			break;
+		}
+	}
+	
+
+	
 	public void destroyEvent() {}
 		
 }

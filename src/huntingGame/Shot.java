@@ -27,7 +27,11 @@ public class Shot extends GameObject implements HasAlarmEvent{
 	//GameObject:
 
 	
-	
+	public static Class<? extends GameObject>[] getCollisionList(){
+		Class<?>[] list = {Bird.class, Tiger.class};
+		return (Class<? extends GameObject>[]) list;
+	}
+
 	@Override
 	public void collisionEvent(GameObject other) {
 		if (other instanceof Bird){
@@ -41,17 +45,17 @@ public class Shot extends GameObject implements HasAlarmEvent{
 	@Override
 	public void draw(Graphics g){
 		g.setColor(Color.YELLOW);
-		((Graphics2D)g).drawLine(getPosition().x, getPosition().y, endPos.x, endPos.y);
+		((Graphics2D)g).drawLine(getMotion().getPosition().x, getMotion().getPosition().y, endPos.x, endPos.y);
 	}
 
 	@Override
 	public void createEvent() {
 		Rectangle room = GameController.getRoomRectangle();
 		int maxDimension = (int) Math.hypot(room.width, room.height); 
-		int x = getX() + (int) (Math.cos(Math.toRadians(myDirection)) * maxDimension);
-		int y = getY() - (int) (Math.sin(Math.toRadians(myDirection)) * maxDimension);
+		int x = getMotion().getX() + (int) (Math.cos(Math.toRadians(myDirection)) * maxDimension);
+		int y = getMotion().getY() - (int) (Math.sin(Math.toRadians(myDirection)) * maxDimension);
 		endPos = new Point(x, y);
-		Line2D.Double line = new Line2D.Double(getPosition(), endPos);
+		Line2D.Double line = new Line2D.Double(getMotion().getPosition(), endPos);
 		for (GameObject obj : ObjectController.getAllObjects())
 			if (obj.isColliding(line))
 				collisionEvent(obj);

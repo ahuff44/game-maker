@@ -6,6 +6,11 @@ package gameMaker;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/** 
+ * This class represents groups of GameObjects that should be checked against each other for collisions. 
+ * 
+ * Having this makes collision detection much more efficient than a naive O(n^2) approach
+ */
 public class CollisionGroup {
 	
 	private ArrayList<GameObject> instanceListA, instanceListB;

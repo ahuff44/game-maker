@@ -29,7 +29,7 @@ import javax.swing.JFrame;
 import javax.swing.Timer;
 
 /**
- * This drives games. It was HEAVILY based off GameMaker, by Mark Overmars
+ * This drives games. It was HEAVILY inspired by GameMaker, a game-creation program written by Mark Overmars
  * 
  * @author Andrew
  */
@@ -47,7 +47,7 @@ public abstract class GameController extends JFrame implements ActionListener, H
 	
 	public GameController(String title){
 		super(title);
-		System.out.println("started");
+		System.out.println("Loading game...");
 		
 		setScreenSettings();
 
@@ -70,9 +70,8 @@ public abstract class GameController extends JFrame implements ActionListener, H
 						packageLocation = packageLocation.substring(0, packageLocation.length() - SUFFIX.length());
 
 						Class<?> c = Class.forName(packageLocation);
-						System.out.println("trying on " + c.getSimpleName());
 						if (GameObject.class.isAssignableFrom(c)){// if c "instanceof" GameObject
-							System.out.println(" success");
+							System.out.println("Loaded GameObject "+c.getSimpleName());
 	
 							
 							
@@ -83,9 +82,9 @@ public abstract class GameController extends JFrame implements ActionListener, H
 							//c.getDeclaredMethod("initializeCollisionGroups", null).invoke(null, null);//TODO working here; why does it call the super static initializeCollisionGroups()???
 						
 							GameObject.initializeCollisionGroups((Class<? extends GameObject>) c);
-						} else
-							System.out.println(" failure");
-	
+						} else {
+							System.out.println("Not a GameObject: "+c.getSimpleName());
+						}
 						
 					} catch (ClassCastException e){//for non-GameObjects, like Rooms
 						System.out.println("*****************unable to cast");

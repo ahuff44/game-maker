@@ -51,7 +51,9 @@ public class Animation {
 	}
 	
 	public int incrementIndex(){
-		index = (index + 1) % getLength();
+		if (getLength() != 0){
+			index = (index + 1) % getLength();
+		}
 		return index;
 	}
 	
@@ -64,7 +66,9 @@ public class Animation {
 	public int getWidth(){
 		if (width == 0){//if it hasn't been calculated yet, calculate the maximum width of the images in this animation
 			for (Image img : images){
-				int w = img.getWidth(null);
+				int w = img.
+						getWidth
+						(null);
 				if (w > width)
 					width = w;
 			}

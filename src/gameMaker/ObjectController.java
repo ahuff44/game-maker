@@ -120,11 +120,18 @@ public class ObjectController{
 	}
 	
 	public static void initializeCollisionGroups(Class<? extends GameObject> type, Class<? extends GameObject>[] list){
-		boolean b = Modifier.isAbstract(type.getModifiers());
-		System.out.println(type + "  w/  " + list + ":\n  is abstract class:" + b);
+		boolean isAbstract = Modifier.isAbstract(type.getModifiers());
+		System.out.println("\tInitializing group: " + type + "  w/  " + list);
+		if (isAbstract){
+			System.out.println("\t\tThis is an abstract class");
+		}
 		for (Class<? extends GameObject> c : list){
-			CollisionGroup g = new CollisionGroup(type, c, b);
-			System.out.println("******collision group added: " + g + "\n " + addCollisionGroup(g));
+			CollisionGroup g = new CollisionGroup(type, c, isAbstract);
+			if (addCollisionGroup(g)){
+				System.out.println("\tCollision group added: " + g);
+			} else {
+				System.out.println("\t******************\n******************ERROR: Collision group failed to add: " + g);
+			}
 		}
 	}
 	
@@ -165,12 +172,9 @@ public class ObjectController{
 	}
 
 	public static void callAlarmEvents() {
-		/* outdated
 		for (GameObject obj : allObjects)
 			if (obj instanceof HasAlarmEvent)
-				((HasAlarmEvent) obj).getAlarmController().decrementAlarms();
-		*/
-		AlarmController.decrementAlarms();
+				((HasAlarmEvent) obj).getAlarmController().stepAlarms();
 		updateBuffers();
 	}
 

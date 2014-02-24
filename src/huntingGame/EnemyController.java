@@ -2,17 +2,18 @@ package huntingGame;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import gameMaker.*;
 
-public class BirdController extends GameObject implements HasAlarmEvent, HasKeyEvent{
+public class EnemyController extends GameObject implements HasAlarmEvent, HasKeyEvent{
 
 	private static final String SPRITE_ADDRESS = null;
 	
 	private AlarmController alarmController;
 	private static int score;
 	
-	public BirdController() {
+	public EnemyController() {
 		super(false, new Point(0, 0));
 		score = 0;
 	}
@@ -27,8 +28,7 @@ public class BirdController extends GameObject implements HasAlarmEvent, HasKeyE
 	
 	public void createEvent() {
 		alarmController = new AlarmController(this);
-		alarmController.setAlarm(0, 45);
-		alarmController.setAlarm(1, 300);
+		alarmController.setAlarm(0, 50);
 	}
 	
 	
@@ -43,19 +43,28 @@ public class BirdController extends GameObject implements HasAlarmEvent, HasKeyE
 		case 0://create a bird
 			//if (ObjectController.instanceNumber(Bird.class, false) <= 10);
 			{
-				int count = 0;
-				for (GameObject obj : ObjectController.getAllObjects())
-					if (obj instanceof Bird)
-						count++;
-				if (count < 8)
+//				int count = 0;
+//				for (GameObject obj : ObjectController.getAllObjects())
+//					if (obj instanceof Bird)
+//						count++;
+//				if (count < 8)
+				int numTigers = Utilities.choose(new int[] {3,2,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+				int numBirds = Utilities.choose(new int[] {3,3,2,1,1,1,1,1,0});
+//				System.out.println("Spawning enemies...");
+				for (int ii = 0; ii < numTigers; ++ii){
+					new Tiger(randomPoint());
+				}
+				for (int ii = 0; ii < numBirds; ++ii){
 					new Bird(randomPoint());
+				}
 			}
-			break;
-		case 1:
-			new Tiger(randomPoint());
+			int timeUntilNextSpawn = alarmController.getLastValue(alarmId) - 1; // The enemies come quicker each time!
+			if (timeUntilNextSpawn < 5){
+				timeUntilNextSpawn = 5;
+			}
+			alarmController.setAlarm(0, timeUntilNextSpawn);
 			break;
 		}
-		alarmController.resetAlarm(alarmId);
 	}
 
 	public void keyPressed(Integer code){
@@ -70,7 +79,6 @@ public class BirdController extends GameObject implements HasAlarmEvent, HasKeyE
 	}
 
 	public void draw(Graphics g){
-		super.draw(g);
 		g.drawString("Score: " + score, 16, 16);
 	}
 	
@@ -84,7 +92,11 @@ public class BirdController extends GameObject implements HasAlarmEvent, HasKeyE
 	
 	
 	
-	
+	public static Class<? extends GameObject>[] getCollisionList(){
+		Class<?>[] list = {};
+		return (Class<? extends GameObject>[]) list;
+	}
+
 	public void collisionEvent(GameObject other) {
 		// TODO Auto-generated method stub
 

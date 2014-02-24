@@ -4,12 +4,14 @@ import java.awt.Image;
 import java.awt.Point;
 
 import gameMaker.*;
+import huntingGame.Bird;
+import huntingGame.Tiger;
 
-public class Road extends GameObject{
+public class Road extends GameObject implements HasAlarmEvent{
 
 	private static final Image roadImg = GraphicsController.getImage("road.png");
 
-	private Alarm carAlarm;
+	private AlarmController alarmController;
 	
 	public Road(Point p){
 		super(false, p, new Sprite(roadImg, 100));
@@ -25,20 +27,32 @@ public class Road extends GameObject{
 		// TODO Auto-generated method stub
 
 	}
-
+	
+	
+	
+	
 	@Override
 	public void createEvent() {
-		carAlarm = new Alarm(this) {
-			
-			@Override
-			public void run(){
-				createCar();
-				reset();
-			}
-			
-		};
-		AlarmController.setAlarm(carAlarm, 6);	
+		alarmController = new AlarmController(this);
+		alarmController.setAlarm(0, 6); //car creation
 	}
+	
+	
+	public AlarmController getAlarmController(){
+		return alarmController;
+	}
+	
+	
+	public void alarmEvent(int alarmId) {
+		switch (alarmId){
+		case 0://create a car
+			createCar();
+			alarmController.resetAlarm(alarmId);
+			break;
+		}
+	}
+	
+	
 
 	@Override
 	public void destroyEvent() {

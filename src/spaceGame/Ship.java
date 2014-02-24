@@ -7,7 +7,7 @@ import gameMaker.*;
 
 public abstract class Ship extends GameObject implements HasAlarmEvent{
 	
-	private AlarmController alarmController;
+	protected AlarmController alarmController;
 	
 	public Ship(Point p, Image img){
 		super(true, p, new Sprite(img, new Point(16, 16)));
@@ -15,7 +15,7 @@ public abstract class Ship extends GameObject implements HasAlarmEvent{
 	}
 	
 	public static Class<? extends GameObject>[] getCollisionList(){
-		Class<?>[] list = {Laser.class};
+		Class<?>[] list = {};
 		return (Class<? extends GameObject>[]) list;
 	}
 	

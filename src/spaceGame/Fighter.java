@@ -16,9 +16,7 @@ public class Fighter extends Ship implements HasKeyEvent{
 
 	
 	private static final Image fighterImg = GraphicsController.getImage("fighter.png");
-	
-	private Alarm shoot;
-	
+	private AlarmController alarmController;
 	
 	
 	//constructors
@@ -27,15 +25,7 @@ public class Fighter extends Ship implements HasKeyEvent{
 	
 	public Fighter(Point p){
 		super(p, fighterImg);
-		shoot = new Alarm(this){
-
-			@Override
-			public void run() {
-				shoot();
-				reset();
-			}
-			
-		};
+		alarmController = new AlarmController(this);
 	}
 	
 	
@@ -44,18 +34,19 @@ public class Fighter extends Ship implements HasKeyEvent{
 	
 	
 
+	public static Class<? extends GameObject>[] getCollisionList(){
+		Class<?>[] list = {};
+		return (Class<? extends GameObject>[]) list;
+	}
+	
 	@Override
-	public void collisionEvent(GameObject other) {
-		if (other instanceof ClickTest){
-			getMotion().gotoPreviousPosition();
-		}
-	}	
+	public void collisionEvent(GameObject other) { }	
 
 	public void keyPressed(Integer code){
 		switch (code){
 		case KeyEvent.VK_SPACE:
 			shoot();
-			AlarmController.setAlarm(shoot, 10);//turn on the stream of bullets
+			alarmController.setAlarm(0, 10);//turn on the stream of bullets
 			break;
 		}
 	}
@@ -74,7 +65,7 @@ public class Fighter extends Ship implements HasKeyEvent{
 	public void keyReleased(Integer code){
 		switch (code){
 		case KeyEvent.VK_SPACE:
-			AlarmController.setAlarm(shoot, 0);//turn off the stream of bullets
+			alarmController.setAlarm(0, 0);//turn off the stream of bullets
 			break;
 		}		
 	}
@@ -83,4 +74,19 @@ public class Fighter extends Ship implements HasKeyEvent{
 		new FighterLaser(getMotion().getPosition());
 	}
 	
+
+	@Override
+	public AlarmController getAlarmController() {
+		return alarmController;
+	}
+
+	@Override
+	public void alarmEvent(int alarmId) {
+		switch (alarmId){
+		case 0: // turn on the stream of bullets
+			shoot();
+			alarmController.resetAlarm(alarmId);
+			break;
+		}
+	}
 }
