@@ -5,9 +5,15 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import gameMaker.*;
+import gameMaker.objects.*;
+import gameMaker.objects.eventInterfaces.HasAlarmEvent;
+import gameMaker.objects.eventInterfaces.HasKeyEvent;
+import gameMaker.objects.eventInterfaces.HasStepEvent;
+import gameMaker.utilities.MiscUtilities;
+import gameMaker.visuals.GraphicsController;
 
 
-public class Snake extends GameObject implements HasKeyEvent, HasAlarmEvent{
+public class Snake extends GameObject implements HasKeyEvent, HasAlarmEvent, HasStepEvent{
 	
 	
 	
@@ -20,7 +26,12 @@ public class Snake extends GameObject implements HasKeyEvent, HasAlarmEvent{
 	private static final Image imgLeft = GraphicsController.getImage("head\\left.png");
 	private static final Image imgDown = GraphicsController.getImage("head\\down.png");
 	
-	private int dir = 0;
+	private int dir;
+	
+	/**
+	 * A buffer. Without this, if you press buttons fast enough, it's possible to run into your neck
+	 */
+	private int nextDir;
 	private ArrayList<Body> body;
 	private AlarmController alarmController;
 		
@@ -30,6 +41,8 @@ public class Snake extends GameObject implements HasKeyEvent, HasAlarmEvent{
 
 	public Snake(Point p, Body tail){
 		super(true, p, imgRight);
+		dir = 0;
+		nextDir = 0;
 		body = new ArrayList<Body>();
 		body.add(tail);
 	}
@@ -40,8 +53,8 @@ public class Snake extends GameObject implements HasKeyEvent, HasAlarmEvent{
 	
 	
 	private void new_food(){
-		Point pt = Utilities.randomPoint(GameController.getRoomRectangle());
-		new Food(Utilities.snapToGrid(pt));
+		Point pt = MiscUtilities.randomPoint(GameController.getRoomRectangle());
+		new Food(MiscUtilities.snapToGrid(pt));
 	}
 	
 	public void move(){
@@ -149,22 +162,22 @@ public class Snake extends GameObject implements HasKeyEvent, HasAlarmEvent{
 		case KeyEvent.VK_A:
 		case KeyEvent.VK_LEFT:
 			if (dir != 0)
-				dir = 180;
+				nextDir = 180;
 			break;
 		case KeyEvent.VK_D:
 		case KeyEvent.VK_RIGHT:
 			if (dir != 180)
-				dir = 0;
+				nextDir = 0;
 			break;
 		case KeyEvent.VK_W:
 		case KeyEvent.VK_UP:
 			if (dir != 270)
-				dir = 90;
+				nextDir = 90;
 			break;
 		case KeyEvent.VK_S:
 		case KeyEvent.VK_DOWN:
 			if (dir != 90)
-				dir = 270;
+				nextDir = 270;
 			break;
 		default:
 			return;
@@ -212,5 +225,16 @@ public class Snake extends GameObject implements HasKeyEvent, HasAlarmEvent{
 			break;
 		}
 	}
+	
+	@Override
+	public void beginStepEvent(){
+		dir = nextDir;
+	}
+
+	@Override
+	public void stepEvent() {}
+
+	@Override
+	public void endStepEvent() {}
 
 }

@@ -4,6 +4,11 @@ import java.awt.Image;
 import java.awt.Point;
 
 import gameMaker.*;
+import gameMaker.objects.AlarmController;
+import gameMaker.objects.GameObject;
+import gameMaker.objects.eventInterfaces.HasAlarmEvent;
+import gameMaker.visuals.Animation;
+import gameMaker.visuals.GraphicsController;
 
 public class Explosion extends GameObject implements HasAlarmEvent{
 

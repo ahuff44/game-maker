@@ -4,6 +4,8 @@ import java.awt.Image;
 import java.awt.Point;
 
 import gameMaker.*;
+import gameMaker.objects.GameObject;
+import gameMaker.visuals.GraphicsController;
 
 public class Bird extends GameObject {
 
@@ -51,7 +53,7 @@ public class Bird extends GameObject {
 
 	@Override
 	public void destroyEvent() {
-		EnemyController.changeScore(10);
+		EnemyController.addToScore(10);
 	}
 
 }

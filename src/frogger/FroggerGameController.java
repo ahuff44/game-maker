@@ -18,7 +18,7 @@ public class FroggerGameController extends GameController {
 	}
 	
 	@Override
-	public void initialize() {
+	public void initializeGame() {
 		Room r = new Room1();
 		r.load();
 		setRoom(r);
@@ -26,13 +26,6 @@ public class FroggerGameController extends GameController {
 		System.out.println("FroggerGameController.initialize() finished\n");
 	}
 	
-	@Override
-	public void keyPressed(KeyEvent arg0){
-		if (arg0.getKeyCode() == KeyEvent.VK_ESCAPE)
-			System.exit(0);
-		else
-			super.keyPressed(arg0);
-	}
 	
 	public static void main(String[] args) {
 		setMainGame(new FroggerGameController("Frogger"));

@@ -6,6 +6,7 @@ import java.awt.Image;
 import java.awt.Point;
 
 import gameMaker.*;
+import gameMaker.visuals.GraphicsController;
 import safari.*;
 
 public class Room1 implements Room {

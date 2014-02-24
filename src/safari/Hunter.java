@@ -7,6 +7,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import gameMaker.*;
+import gameMaker.objects.AlarmController;
+import gameMaker.objects.GameObject;
+import gameMaker.objects.eventInterfaces.HasAlarmEvent;
+import gameMaker.objects.eventInterfaces.HasKeyEvent;
+import gameMaker.objects.eventInterfaces.HasMouseEvent;
+import gameMaker.utilities.MiscUtilities;
+import gameMaker.visuals.GraphicsController;
 
 public class Hunter extends GameObject implements HasMouseEvent, HasKeyEvent, HasAlarmEvent {
 	
@@ -57,7 +64,7 @@ public class Hunter extends GameObject implements HasMouseEvent, HasKeyEvent, Ha
 	@Override
 	public void draw(Graphics g){
 		super.draw(g);
-		Point p = Utilities.mousePosition();
+		Point p = MiscUtilities.mousePosition();
 		g.drawRect(p.x - 2, p.y - 2, 5, 5);
 	}
 
@@ -80,7 +87,7 @@ public class Hunter extends GameObject implements HasMouseEvent, HasKeyEvent, Ha
 	}
 	
 	private void shoot() {
-		double dir = Utilities.pointDirection(getMotion().getPosition(), target);
+		double dir = MiscUtilities.pointDirection(getMotion().getPosition(), target);
 		if (true){//if it's a shotgun TODO add more weapons
 			final int scatterFactor = 20;
 			for (int i = 0; i < 4; i++)
@@ -134,7 +141,7 @@ public class Hunter extends GameObject implements HasMouseEvent, HasKeyEvent, Ha
 	public void alarmEvent(int alarmId) {
 		switch (alarmId){
 		case 0:
-			target = Utilities.mousePosition();
+			target = MiscUtilities.mousePosition();
 			shoot();
 			alarmController.resetAlarm(0);
 		}

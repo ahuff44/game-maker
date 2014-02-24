@@ -1,6 +1,8 @@
 package safari;
 
 import gameMaker.*;
+import gameMaker.objects.CollisionGroup;
+import gameMaker.objects.ObjectController;
 import safari.rooms.*;
 
 
@@ -16,7 +18,7 @@ public class SafariGameController extends GameController {
 	}
 
 	@Override
-	public void initialize() {
+	public void initializeGame() {
 		//initialize collision groups
 		{
 			ObjectController.initialize();

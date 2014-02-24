@@ -4,6 +4,12 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 import gameMaker.*;
+import gameMaker.objects.AlarmController;
+import gameMaker.objects.GameObject;
+import gameMaker.objects.eventInterfaces.HasAlarmEvent;
+import gameMaker.objects.eventInterfaces.HasKeyEvent;
+import gameMaker.utilities.MiscUtilities;
+import gameMaker.visuals.GraphicsController;
 
 
 public class Frog extends GameObject implements HasKeyEvent, HasAlarmEvent {
@@ -63,7 +69,7 @@ public class Frog extends GameObject implements HasKeyEvent, HasAlarmEvent {
 		default: 
 			return;
 		}
-		if (canMove && Utilities.isInsideRoom(getMotion().relativePoint(p))){
+		if (canMove && MiscUtilities.isInsideRoom(getMotion().relativePoint(p))){
 			getMotion().changePosition(p);
 			canMove = false;
 			alarmController.setAlarm(0, 10); //reset canMove

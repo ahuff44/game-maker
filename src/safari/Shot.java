@@ -4,6 +4,10 @@ import java.awt.*;
 import java.awt.geom.Line2D;
 
 import gameMaker.*;
+import gameMaker.objects.AlarmController;
+import gameMaker.objects.GameObject;
+import gameMaker.objects.ObjectController;
+import gameMaker.objects.eventInterfaces.HasAlarmEvent;
 
 public class Shot extends GameObject implements HasAlarmEvent{
 

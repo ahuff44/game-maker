@@ -18,7 +18,7 @@ public class SnakeGameController extends GameController {
 	}
 	
 	@Override
-	public void initialize() {
+	public void initializeGame() {
 		Room r = new Room1();
 		r.load();
 		setRoom(r);

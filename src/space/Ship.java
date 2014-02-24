@@ -3,6 +3,10 @@ package space;
 import java.awt.*;
 
 import gameMaker.*;
+import gameMaker.objects.AlarmController;
+import gameMaker.objects.GameObject;
+import gameMaker.objects.eventInterfaces.HasAlarmEvent;
+import gameMaker.visuals.Animation;
 
 public abstract class Ship extends GameObject implements HasAlarmEvent{
 	

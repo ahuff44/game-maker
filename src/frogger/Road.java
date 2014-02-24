@@ -4,6 +4,13 @@ import java.awt.Image;
 import java.awt.Point;
 
 import gameMaker.*;
+import gameMaker.objects.AlarmController;
+import gameMaker.objects.GameObject;
+import gameMaker.objects.Motion;
+import gameMaker.objects.eventInterfaces.HasAlarmEvent;
+import gameMaker.utilities.MiscUtilities;
+import gameMaker.visuals.GraphicsController;
+import gameMaker.visuals.Sprite;
 
 public class Road extends GameObject implements HasAlarmEvent{
 
@@ -59,7 +66,7 @@ public class Road extends GameObject implements HasAlarmEvent{
 	private void createCar() {
 		int x, dir;
 		int y = ((int) (Math.random() * 4)) * 64;
-		int odd_lane = Utilities.choose(new int[] {1, 0});
+		int odd_lane = MiscUtilities.choose(new int[] {1, 0});
 		if (odd_lane == 1){
 			x = 480;
 			dir = 180;

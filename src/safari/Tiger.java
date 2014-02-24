@@ -6,6 +6,10 @@ import java.awt.Image;
 import java.awt.Point;
 
 import gameMaker.*;
+import gameMaker.objects.GameObject;
+import gameMaker.objects.eventInterfaces.HasStepEvent;
+import gameMaker.utilities.MiscUtilities;
+import gameMaker.visuals.GraphicsController;
 
 public class Tiger extends GameObject implements HasStepEvent{
 
@@ -48,7 +52,7 @@ public class Tiger extends GameObject implements HasStepEvent{
 		if (other instanceof Bird){
 			getMotion().gotoPreviousPosition();
 			other.destroy();
-			EnemyController.changeScore(-20);
+			EnemyController.addToScore(-20);
 		}
 		if (other instanceof Hunter){
 			other.destroy();
@@ -63,7 +67,7 @@ public class Tiger extends GameObject implements HasStepEvent{
 
 	@Override
 	public void destroyEvent() {
-		EnemyController.changeScore(100);
+		EnemyController.addToScore(100);
 	}
 
 	@Override
@@ -86,8 +90,8 @@ public class Tiger extends GameObject implements HasStepEvent{
 
 	@Override
 	public void stepEvent() {
-		getMotion().setSpeed( Utilities.numBounds(getMotion().getSpeed() + .1, 0, SPEED));
-		double dir = Utilities.pointDirection(getMotion().getPosition(), Hunter.self.getMotion().getPosition());
+		getMotion().setSpeed( MiscUtilities.numBounds(getMotion().getSpeed() + .1, 0, SPEED));
+		double dir = MiscUtilities.pointDirection(getMotion().getPosition(), Hunter.self.getMotion().getPosition());
 		getMotion().setDirection(dir);
 	}
 	

@@ -1,21 +1,26 @@
 package space;
 
 import gameMaker.*;
+import gameMaker.objects.AlarmController;
+import gameMaker.objects.GameObject;
+import gameMaker.objects.eventInterfaces.HasKeyEvent;
+import gameMaker.objects.eventInterfaces.HasMouseEvent;
+import gameMaker.visuals.GraphicsController;
 
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-
 public class Fighter extends Ship implements HasKeyEvent, HasMouseEvent{
 	
 	
 	//fields
+	
 
-    private static final Animation goingLeft = new Animation(GraphicsController.getImage("fighter\\goingLeft.png"));
-    private static final Animation goingRight = new Animation(GraphicsController.getImage("fighter\\goingRight.png"));
-    private static final Animation holdingStill = new Animation(GraphicsController.getImage("fighter\\holdingStill.png"));
+    private static final Image goingLeft = GraphicsController.getImage("fighter\\goingLeft.png");
+    private static final Image goingRight = GraphicsController.getImage("fighter\\goingRight.png");
+    private static final Image holdingStill = GraphicsController.getImage("fighter\\holdingStill.png");
 	
 	private AlarmController alarmController;
 	
@@ -60,12 +65,12 @@ public class Fighter extends Ship implements HasKeyEvent, HasMouseEvent{
 		switch (code){
 		case KeyEvent.VK_A:
 		case KeyEvent.VK_LEFT:
-			getSprite().setAnimation(goingLeft);
+			getSprite().setImage(goingLeft);
 			getMotion().changeX(-5);
 			break;
 		case KeyEvent.VK_D:
 		case KeyEvent.VK_RIGHT:
-			getSprite().setAnimation(goingRight);
+			getSprite().setImage(goingRight);
 			getMotion().changeX(5);
 			break;
 		}
@@ -90,7 +95,7 @@ public class Fighter extends Ship implements HasKeyEvent, HasMouseEvent{
 		case KeyEvent.VK_LEFT:
 		case KeyEvent.VK_D:
 		case KeyEvent.VK_RIGHT:
-			getSprite().setAnimation(holdingStill);
+			getSprite().setImage(holdingStill);
 			break;
 		}		
 	}

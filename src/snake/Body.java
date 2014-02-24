@@ -5,6 +5,8 @@ import java.awt.Image;
 import java.awt.Point;
 
 import gameMaker.*;
+import gameMaker.objects.GameObject;
+import gameMaker.visuals.GraphicsController;
 
 public class Body extends GameObject {
 	

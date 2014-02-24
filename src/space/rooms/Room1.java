@@ -6,6 +6,7 @@ import java.awt.Image;
 import java.awt.Point;
 
 import gameMaker.*;
+import gameMaker.visuals.GraphicsController;
 import space.*;
 
 public class Room1 implements Room {
@@ -30,7 +31,6 @@ public class Room1 implements Room {
 	
 	@Override
 	public void load() {
-		new SpaceGameControllerObject();
 		new Fighter(new Point(320, 438));
 		int[][] coords = {{1,1},
 						  {7,1},

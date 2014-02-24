@@ -4,6 +4,8 @@ package space;
 import java.awt.*;
 
 import gameMaker.*;
+import gameMaker.objects.GameObject;
+import gameMaker.visuals.GraphicsController;
 
 
 public class FighterLaser extends Laser {

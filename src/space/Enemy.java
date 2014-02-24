@@ -2,6 +2,10 @@ package space;
 
 import java.awt.*;
 import gameMaker.*;
+import gameMaker.objects.AlarmController;
+import gameMaker.objects.GameObject;
+import gameMaker.utilities.MiscUtilities;
+import gameMaker.visuals.GraphicsController;
 
 
 public class Enemy extends Ship{
@@ -47,10 +51,10 @@ public class Enemy extends Ship{
 	public void createEvent(){
 		super.createEvent();
 		int[] speeds = {-3, 3};
-		getMotion().setHspeed(Utilities.choose(speeds));
+		getMotion().setHspeed(MiscUtilities.choose(speeds));
 		
 		alarmController = new AlarmController(this);
-		alarmController.setAlarm(0, 35+Utilities.choose(new int[] {-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5}));//shoot
+		alarmController.setAlarm(0, 35+MiscUtilities.choose(new int[] {-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5}));//shoot
 	}
 	
 	@Override

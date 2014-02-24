@@ -5,6 +5,10 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 
 import gameMaker.*;
+import gameMaker.objects.GameObject;
+import gameMaker.objects.eventInterfaces.HasKeyEvent;
+import gameMaker.objects.eventInterfaces.HasMouseEvent;
+import gameMaker.visuals.GraphicsController;
 
 public class ClickTest extends GameObject implements HasMouseEvent, HasKeyEvent{
 

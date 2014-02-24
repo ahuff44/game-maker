@@ -1,6 +1,6 @@
 package testing;
 
-import gameMaker.Printer;
+import gameMaker.utilities.Printer;
 
 public class PrinterTest {
 

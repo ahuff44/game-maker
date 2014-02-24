@@ -3,6 +3,8 @@ package space;
 import java.awt.*;
 
 import gameMaker.*;
+import gameMaker.objects.GameObject;
+import gameMaker.visuals.Sprite;
 
 public abstract class Laser extends GameObject{
 	

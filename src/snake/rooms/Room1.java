@@ -6,6 +6,7 @@ import java.awt.Image;
 import java.awt.Point;
 
 import gameMaker.*;
+import gameMaker.visuals.GraphicsController;
 import snake.*;
 
 public class Room1 implements Room {
@@ -30,10 +31,9 @@ public class Room1 implements Room {
 	
 	@Override
 	public void load() {
-		int snake_x = 80;
-		int snake_y = 160;
-		Body tail = new Body(new Point(snake_x - 32, snake_y));
-		new Snake(new Point(snake_x, snake_y), tail);
+		Point snakePt = new Point(80, 160);
+		Body tail = new Body(snakePt);
+		new Snake(snakePt, tail);
 	}
 
 	@Override

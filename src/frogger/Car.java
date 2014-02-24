@@ -1,8 +1,12 @@
 package frogger;
 
-import java.awt.Image;
+import gameMaker.objects.GameObject;
+import gameMaker.objects.Motion;
+import gameMaker.visuals.GraphicsController;
+import gameMaker.visuals.Sprite;
 
-import gameMaker.*;
+import java.awt.Image;
+import java.awt.Point;
 
 public class Car extends GameObject {
 
@@ -11,6 +15,7 @@ public class Car extends GameObject {
 
 	public Car(Motion m, boolean goingLeft){
 		super(true, m, new Sprite(goingLeft ? imgCarLeft : imgCarRight, 50));
+		getSprite().setCenter(new Point(32, 0));
 	}
 	
 	public static Class<? extends GameObject>[] getCollisionList(){

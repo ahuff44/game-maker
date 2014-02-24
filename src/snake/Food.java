@@ -3,6 +3,9 @@ package snake;
 import java.awt.*;
 
 import gameMaker.*;
+import gameMaker.objects.GameObject;
+import gameMaker.visuals.Animation;
+import gameMaker.visuals.GraphicsController;
 
 
 public class Food extends GameObject {
