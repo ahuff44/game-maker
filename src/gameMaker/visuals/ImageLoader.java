@@ -18,8 +18,9 @@ public class ImageLoader {
 	static HashMap<String, Image> images = new HashMap<String, Image>();
 	
 	public static void preload(String parentDirectory) throws FileNotFoundException{
-		if (!parentDirectory.endsWith("/"))
+		if (!parentDirectory.endsWith("/")){
 			parentDirectory = parentDirectory + '/';
+		}
 		ArrayList<File> classFiles = FileFinder.getFiles(parentDirectory, ".bmp", ".png", ".jpeg", ".bmp");
 		for (File file : classFiles){
 			String key = file.toString();
@@ -27,7 +28,6 @@ public class ImageLoader {
 			Image img = load(file);
 			images.put(key, img);
 		}
-		
 	}
 	
 	public static Image load(File imgFile){
@@ -41,18 +41,20 @@ public class ImageLoader {
 	
 	public static Image get(String imageName) throws FileNotFoundException{
 		Image img = images.get(imageName);
-		if (img == null)
+		if (img == null){
 			throw new FileNotFoundException(imageName + " was not found");
-		else
+		} else {
 			return img;
+		}
 	}
 	
 	/**
 	 * A debugging method that prints out all image keys.
 	 */
 	public static void printImageKeys(){
-		for (Entry<String, Image> e : images.entrySet())
+		for (Entry<String, Image> e : images.entrySet()){
 			Printer.println(" ", e.getKey());
+		}
 	}
 	
 }

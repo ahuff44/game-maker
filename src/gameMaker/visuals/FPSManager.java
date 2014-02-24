@@ -5,6 +5,9 @@ public class FPSManager {
 	private final int memory = 30;
 	private long lastTime;
 
+	/**
+	 * Keeps a record of previous times between each frame, so we take a moving average and call that the FPS
+	 */
 	private int[] timeData;
 	private int pointer;//which index in timeData to write the next time data
 	

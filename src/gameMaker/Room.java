@@ -3,10 +3,12 @@ package gameMaker;
 import java.awt.*;
 
 /**
- * Rooms really should be static classes. But the interface syntax was yelling at me. :(
- * TODO make this an abstract class?
+ * Basically, a Room represents one screen of gameplay.
+ * The concept of Room s hasn't really been fleshed out in the project yet, so it might not make a lot of sense to you.
+ * If you've used YoyoGames' GameMaker, then I can tell you that my Rooms are based off their rooms
+ * 
+ * TODO make this an base class, and enforce it so that Rooms must be singletons
  * @author Andrew
- *
  */
 public interface Room {
 
