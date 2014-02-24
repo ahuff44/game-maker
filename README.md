@@ -7,15 +7,19 @@ Sorry about the lack of comments... I'm wishing I'd put them in too.
 
 Included are some example games so you can see how things work.
 These examples are in no way meant to be complete, polished games; their job is merely to show off some of the basics that are possibile in my game engine.
+
 Frogger:
     ![screenshot of frogger](https://raw.github.com/ahuff44/game-maker/screenshots/frogger.png)
     Run the main class frogger.FroggerGameController
+
 Safari:
     ![screenshot of safari](https://raw.github.com/ahuff44/game-maker/screenshots/safari.png)
     Run the main class safari.SafariGameController
+
 Snake:
     ![screenshot of snake](https://raw.github.com/ahuff44/game-maker/screenshots/snake.png)
     Run the main class snake.SnakeGameController
+
 Space:
     ![screenshot of space](https://raw.github.com/ahuff44/game-maker/screenshots/space.png)
     Run the main class space.SpaceGameBackgroundController
