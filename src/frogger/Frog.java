@@ -9,19 +9,15 @@ import gameMaker.*;
 public class Frog extends GameObject implements HasKeyEvent, HasAlarmEvent {
 	
 	
-	
 	//fields
 	
-
 	
 	private static final Image frogImg = GraphicsController.getImage("frog.png");
 	private AlarmController alarmController;
 	private boolean canMove;
 	
 	
-	
 	//constructors
-	
 	
 
 	public Frog(Point p){
@@ -29,9 +25,7 @@ public class Frog extends GameObject implements HasKeyEvent, HasAlarmEvent {
 	}
 	
 	
-	
 	//Overridden methods
-	
 
 	
 	public static Class<? extends GameObject>[] getCollisionList(){
@@ -46,6 +40,7 @@ public class Frog extends GameObject implements HasKeyEvent, HasAlarmEvent {
 		}
 	}
 
+	@Override
 	public void keyDown(Integer keyCode){
 		Point p;
 		switch (keyCode){
@@ -75,28 +70,36 @@ public class Frog extends GameObject implements HasKeyEvent, HasAlarmEvent {
 		}
 	}
 	
+	@Override
 	public void keyPressed(Integer keyCode) {}
+	
+	@Override
 	public void keyReleased(Integer keyCode) {}
 	
+	@Override
 	public void intersectBoundaryEvent() {
 		getMotion().gotoPreviousPosition();
 	}
 	
+	@Override
 	public void outsideRoomEvent() {
 		destroy();
 	}
 	
+	@Override
 	public void createEvent() {
 		alarmController = new AlarmController(this);
 		canMove = true;
 	}
 	
 	
+	@Override
 	public AlarmController getAlarmController(){
 		return alarmController;
 	}
 	
 	
+	@Override
 	public void alarmEvent(int alarmId) {
 		switch (alarmId){
 		case 0:// reset canMove
@@ -107,6 +110,7 @@ public class Frog extends GameObject implements HasKeyEvent, HasAlarmEvent {
 	
 
 	
+	@Override
 	public void destroyEvent() {}
 		
 }

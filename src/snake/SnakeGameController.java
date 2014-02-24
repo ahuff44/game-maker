@@ -26,6 +26,7 @@ public class SnakeGameController extends GameController {
 		System.out.println("SnakeGameController.initialize() finished\n");
 	}
 	
+	@Override
 	public void keyPressed(KeyEvent arg0){
 		if (arg0.getKeyCode() == KeyEvent.VK_ESCAPE)
 			System.exit(0);

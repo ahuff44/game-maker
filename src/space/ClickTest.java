@@ -15,42 +15,7 @@ public class ClickTest extends GameObject implements HasMouseEvent, HasKeyEvent{
 	public ClickTest(Point p){
 		super(true, p, testImg);
 	}
-	
-	public static Class<? extends GameObject>[] getCollisionList(){
-		Class<?>[] list = {};
-		return (Class<? extends GameObject>[]) list;
-	}
-	
-	@Override
-	public void collisionEvent(GameObject other) {
-		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public void createEvent() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void destroyEvent() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void intersectBoundaryEvent() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public void outsideRoomEvent() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
 	public void mouseEvent(MouseEvent ev) {
 		if (go)
@@ -63,18 +28,34 @@ public class ClickTest extends GameObject implements HasMouseEvent, HasKeyEvent{
 		System.out.println("    point showing enabled: " + go);
 	}
 	
+	
 	//unused:
 
-	@Override
-	public void keyDown(Integer code) {
-		// TODO Auto-generated method stub
-		
+	
+	public static Class<? extends GameObject>[] getCollisionList(){
+		Class<?>[] list = {};
+		return (Class<? extends GameObject>[]) list;
 	}
 
 	@Override
-	public void keyReleased(Integer code) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void collisionEvent(GameObject other) {}
+
+	@Override
+	public void createEvent() {}
+
+	@Override
+	public void destroyEvent() {}
+
+	@Override
+	public void intersectBoundaryEvent() {}
+	
+	@Override
+	public void outsideRoomEvent() {}
+
+	@Override
+	public void keyDown(Integer code) {}
+
+	@Override
+	public void keyReleased(Integer code) {}
 
 }

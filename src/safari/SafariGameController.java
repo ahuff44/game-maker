@@ -33,12 +33,12 @@ public class SafariGameController extends GameController {
 		r.load();
 		setRoom(r);
 		
-		System.out.println("HuntingGameController.initialize() finished");
+		System.out.println("SafariGameController.initialize() finished");
 		System.out.println();
 	}
 	 
 	public static void main(String[] args) {
-		setMainGame(new SafariGameController("Hunting"));
+		setMainGame(new SafariGameController("Safari"));
 	}
 
 }

@@ -13,6 +13,10 @@ public abstract class Ship extends GameObject implements HasAlarmEvent{
 		System.out.println("creating " + this);
 	}
 	
+	
+	// Overridden methods:
+	
+	
 	public static Class<? extends GameObject>[] getCollisionList(){
 		Class<?>[] list = {};
 		return (Class<? extends GameObject>[]) list;

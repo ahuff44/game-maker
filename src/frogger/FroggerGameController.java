@@ -26,6 +26,7 @@ public class FroggerGameController extends GameController {
 		System.out.println("FroggerGameController.initialize() finished\n");
 	}
 	
+	@Override
 	public void keyPressed(KeyEvent arg0){
 		if (arg0.getKeyCode() == KeyEvent.VK_ESCAPE)
 			System.exit(0);

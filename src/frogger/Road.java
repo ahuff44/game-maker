@@ -30,11 +30,13 @@ public class Road extends GameObject implements HasAlarmEvent{
 	}
 	
 	
+	@Override
 	public AlarmController getAlarmController(){
 		return alarmController;
 	}
 	
 	
+	@Override
 	public void alarmEvent(int alarmId) {
 		switch (alarmId){
 		case 0://create a car

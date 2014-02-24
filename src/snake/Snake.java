@@ -95,11 +95,6 @@ public class Snake extends GameObject implements HasKeyEvent, HasAlarmEvent{
 			b.getMotion().setPosition(getMotion().getPosition());//move the first body segment to the snake's position
 	}
 	
-	public void draw(Graphics g){
-		super.draw(g);
-		drawBody(g);
-	}
-	
 	public void drawBody(Graphics g){
 		GameObject front;
 		if (body.size() > 1)
@@ -140,8 +135,15 @@ public class Snake extends GameObject implements HasKeyEvent, HasAlarmEvent{
 			grow();
 			new_food();
 		}
-	}	
+	}
+	
+	@Override
+	public void draw(Graphics g){
+		super.draw(g);
+		drawBody(g);
+	}
 
+	@Override
 	public void keyDown(Integer keyCode){
 		switch (keyCode){
 		case KeyEvent.VK_A:
@@ -169,17 +171,23 @@ public class Snake extends GameObject implements HasKeyEvent, HasAlarmEvent{
 		}
 	}
 	
+	@Override
 	public void keyPressed(Integer keyCode) {}
+	
+	@Override
 	public void keyReleased(Integer keyCode) {}
 	
+	@Override
 	public void intersectBoundaryEvent() {
 		getMotion().gotoPreviousPosition();
 	}
 	
+	@Override
 	public void outsideRoomEvent() {
 		destroy();
 	}
 	
+	@Override
 	public void createEvent() {
 		new_food();
 		
@@ -187,12 +195,15 @@ public class Snake extends GameObject implements HasKeyEvent, HasAlarmEvent{
 		alarmController.setAlarm(0, 3); //move
 	}
 	
+	@Override
 	public void destroyEvent() {}
 	
+	@Override
 	public AlarmController getAlarmController(){
 		return alarmController;
 	}
 	
+	@Override
 	public void alarmEvent(int alarmId){
 		switch (alarmId){
 		case 0:

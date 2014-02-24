@@ -7,17 +7,17 @@ import gameMaker.*;
 
 public class SpaceGameControllerObject extends GameObject implements HasKeyEvent{
 	
-	//fields
 	
-	private static final String SPRITE_ADDRESS = null;
-
 	//constructors
+	
 	
 	public SpaceGameControllerObject(){
 		super();
 	}
 
-	// Overridden methods
+	
+	// Overridden methods:
+	
 	
 	public static Class<? extends GameObject>[] getCollisionList(){
 		Class<?>[] list = {};
@@ -67,7 +67,5 @@ public class SpaceGameControllerObject extends GameObject implements HasKeyEvent
 
 	@Override
 	public void outsideRoomEvent() {}
-
-
 
 }

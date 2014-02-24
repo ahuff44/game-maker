@@ -13,7 +13,6 @@ public class EnemyLaser extends Laser {
 	}
 	
 	
-	
 	//Overridden methods
 	
 	

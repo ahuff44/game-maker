@@ -17,6 +17,7 @@ public class Tiger extends GameObject implements HasStepEvent{
 	
 	public Tiger(Point position) {
 		super(true, position, tigerImg);
+		getSprite().setCenter(new Point(16, 16));
 		getMotion().setSpeed(0);
 	}
 	
@@ -36,11 +37,7 @@ public class Tiger extends GameObject implements HasStepEvent{
 	public void outsideRoomEvent() {
 		destroy();
 	}
-	
-	public Point spriteCenter(){
-		return new Point(16, 16);
-	}
-	
+		
 	public static Class<? extends GameObject>[] getCollisionList(){
 		Class<?>[] list = {Bird.class, Hunter.class, Tiger.class};
 		return (Class<? extends GameObject>[]) list;

@@ -15,9 +15,7 @@ public class FighterLaser extends Laser {
 	}
 	
 	
-	
 	//Overridden methods
-	
 	
 
 	public static Class<? extends GameObject>[] getCollisionList(){

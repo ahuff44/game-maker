@@ -227,15 +227,6 @@ public abstract class GameObject {
 		g.drawRect(mask.x, mask.y, mask.width, mask.height);
 	}
 	
-	/* This is old and outdated, from before the Sprite class.
-	/**
-	 * A method that moves the instance's mask to its current position.
-	 *
-	public void updateMask(){
-		mask.x = position.x - spriteCenter().x;
-		mask.y = position.y - spriteCenter().y;
-	}
-	*/
 	
 	/**
 	 * You should NOT call this method. 

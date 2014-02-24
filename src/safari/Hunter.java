@@ -18,6 +18,7 @@ public class Hunter extends GameObject implements HasMouseEvent, HasKeyEvent, Ha
 	
 	public Hunter(Point p) {
 		super(true, p, hunterImg);
+		getSprite().setCenter(new Point(16, 16));
 		alarmController = new AlarmController(this);
 		target = null;//TODO should this change?
 		self = this;
@@ -33,39 +34,29 @@ public class Hunter extends GameObject implements HasMouseEvent, HasKeyEvent, Ha
 		Class<?>[] list = {Bird.class, Tiger.class};
 		return (Class<? extends GameObject>[]) list;
 	}
-
+	
+	@Override
 	public void collisionEvent(GameObject other) {
 		if (other instanceof Bird || other instanceof Tiger)
 			getMotion().gotoPreviousPosition();
 	}
 
 	
-	public void createEvent() {
-		// TODO Auto-generated method stub
-
-	}
-
+	@Override
+	public void createEvent() {}
 	
-	public void destroyEvent() {
-		// TODO Auto-generated method stub
-
-	}
-
+	@Override
+	public void destroyEvent() {}
 	
+	@Override
 	public void intersectBoundaryEvent() {
 		getMotion().gotoPreviousPosition();
 	}
-
 	
-	public void outsideRoomEvent() {
-		// TODO Auto-generated method stub
-
-	}
+	@Override
+	public void outsideRoomEvent() {}
 	
-	public Point spriteCenter(){
-		return new Point(16, 16);
-	}
-	
+	@Override
 	public void draw(Graphics g){
 		super.draw(g);
 		Point p = Utilities.mousePosition();
@@ -77,7 +68,7 @@ public class Hunter extends GameObject implements HasMouseEvent, HasKeyEvent, Ha
 	//HasMouseEvent:
 	
 	
-	
+	@Override
 	public void mouseEvent(MouseEvent ev) {
 		switch (ev.getID()){
 		case MouseEvent.MOUSE_PRESSED:
@@ -130,17 +121,10 @@ public class Hunter extends GameObject implements HasMouseEvent, HasKeyEvent, Ha
 	}
 
 	@Override
-	public void keyPressed(Integer code) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	public void keyPressed(Integer code) {}
 
 	@Override
-	public void keyReleased(Integer code) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void keyReleased(Integer code) {}
 
 
 	

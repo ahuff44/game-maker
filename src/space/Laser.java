@@ -9,7 +9,11 @@ public abstract class Laser extends GameObject{
 	public Laser(Point p, Image img){
 		super(true, p, new Sprite(img, new Point(3, 16)));
 	}
-		
+	
+	
+	// Overridden methods:
+	
+	
 	public static Class<? extends GameObject>[] getCollisionList(){
 		Class<?>[] list = {Ship.class};
 		return (Class<? extends GameObject>[]) list;

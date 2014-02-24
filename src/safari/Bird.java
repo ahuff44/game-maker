@@ -11,6 +11,7 @@ public class Bird extends GameObject {
 
 	public Bird(Point position) {
 		super(true, position, birdImg);
+		getSprite().setCenter(new Point(16, 16));
 		getMotion().setSpeed(6);
 		getMotion().setDirection(Math.random() * 360);
 	}
@@ -31,11 +32,7 @@ public class Bird extends GameObject {
 	public void outsideRoomEvent() {
 		destroy();
 	}
-	
-	public Point spriteCenter(){
-		return new Point(16, 16);
-	}
-	
+		
 	public static Class<? extends GameObject>[] getCollisionList(){
 		Class<?>[] list = {Bird.class, Hunter.class};
 		return (Class<? extends GameObject>[]) list;
@@ -50,10 +47,7 @@ public class Bird extends GameObject {
 	}
 
 	@Override
-	public void createEvent() {
-		// TODO Auto-generated method stub
-
-	}
+	public void createEvent() {}
 
 	@Override
 	public void destroyEvent() {

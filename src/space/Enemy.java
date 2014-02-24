@@ -7,30 +7,27 @@ import gameMaker.*;
 public class Enemy extends Ship{
 	
 	
-	
 	//fields
 	
-
 	
 	private static final Image enemyImg = GraphicsController.getImage("enemy.png");
 
-	//private Alarm shoot;
-	
 	
 	//constructors
-	
 	
 	
 	public Enemy(Point p){
 		super(p, enemyImg);
 	}
 	
+	private void shoot(){
+		new EnemyLaser(getMotion().getPosition());
+	}
 	
-	
+
 	//Overridden methods
 	
 	
-
 	public static Class<? extends GameObject>[] getCollisionList(){
 		Class<?>[] list = {Enemy.class};
 		return (Class<? extends GameObject>[]) list;
@@ -62,11 +59,6 @@ public class Enemy extends Ship{
 		getMotion().scaleHspeed(-1);
 	}
 	
-	private void shoot(){
-		new EnemyLaser(getMotion().getPosition());
-	}
-
-
 
 	@Override
 	public AlarmController getAlarmController() {

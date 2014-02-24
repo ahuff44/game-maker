@@ -24,6 +24,10 @@ public class Explosion extends GameObject implements HasAlarmEvent{
 		getSprite().setCenter(new Point(32, 32));
 	}
 	
+	
+	// Overridden methods:
+	
+	
 	public static Class<? extends GameObject>[] getCollisionList(){
 		Class<?>[] list = {Enemy.class, Fighter.class};
 		return (Class<? extends GameObject>[]) list;
