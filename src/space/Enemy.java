@@ -50,7 +50,7 @@ public class Enemy extends Ship{
 		getMotion().setHspeed(Utilities.choose(speeds));
 		
 		alarmController = new AlarmController(this);
-		alarmController.setAlarm(0, 45);//shoot
+		alarmController.setAlarm(0, 35+Utilities.choose(new int[] {-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5}));//shoot
 	}
 	
 	@Override

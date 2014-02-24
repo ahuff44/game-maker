@@ -19,17 +19,6 @@ public class SpaceGameControllerObject extends GameObject implements HasKeyEvent
 	// Overridden methods:
 	
 	
-	public static Class<? extends GameObject>[] getCollisionList(){
-		Class<?>[] list = {};
-		return (Class<? extends GameObject>[]) list;
-	}
-
-	@Override
-	public void collisionEvent(GameObject other) {
-		// TODO Auto-generated method stub
-
-	}
-
 	@Override
 	public void createEvent() {
 		GameController.debugln("SpaceGameControllerObject.createEvent");
@@ -42,9 +31,9 @@ public class SpaceGameControllerObject extends GameObject implements HasKeyEvent
 			System.exit(0);
 			break;
 //TODO make this work... I worked FOREVER on restart() fxnality and got nowhere...
-//		case KeyEvent.VK_ENTER://restart the game
-//			GameController.restart();
-//			break;
+		case KeyEvent.VK_ENTER://restart the game
+			GameController.restart();
+			break;
 		}
 	}
 	
@@ -53,6 +42,14 @@ public class SpaceGameControllerObject extends GameObject implements HasKeyEvent
 
 	//unused:
 	
+	public static Class<? extends GameObject>[] getCollisionList(){
+		Class<?>[] list = {};
+		return (Class<? extends GameObject>[]) list;
+	}
+
+	@Override
+	public void collisionEvent(GameObject other) {}
+
 	@Override
 	public void keyDown(Integer code) {}
 

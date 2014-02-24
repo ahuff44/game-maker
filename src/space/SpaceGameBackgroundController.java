@@ -16,7 +16,7 @@ public class SpaceGameBackgroundController extends GameController{
 	}
 	
 	@Override
-	public void initialize() {				
+	public void initialize() {
 		Room r = new Room1();
 		r.load();
 		setRoom(r);

@@ -8,9 +8,18 @@ public abstract class Ship extends GameObject implements HasAlarmEvent{
 	
 	protected AlarmController alarmController;
 	
+	
+	// constructors
+	
+	
 	public Ship(Point p, Image img){
-		super(true, p, new Sprite(img, new Point(16, 16)));
-		System.out.println("creating " + this);
+		super(true, p, img);
+		getSprite().setCenter(new Point(16, 16));
+	}
+	
+	public Ship(Point p, Animation anim){
+		super(true, p, anim);
+		getSprite().setCenter(new Point(16, 16));
 	}
 	
 	

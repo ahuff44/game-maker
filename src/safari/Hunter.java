@@ -25,9 +25,7 @@ public class Hunter extends GameObject implements HasMouseEvent, HasKeyEvent, Ha
 	}
 	
 	
-	
-	//GameObject:	
-	
+	//GameObject:
 	
 	
 	public static Class<? extends GameObject>[] getCollisionList(){
@@ -64,7 +62,6 @@ public class Hunter extends GameObject implements HasMouseEvent, HasKeyEvent, Ha
 	}
 
 	
-	
 	//HasMouseEvent:
 	
 	
@@ -90,11 +87,9 @@ public class Hunter extends GameObject implements HasMouseEvent, HasKeyEvent, Ha
 				new Shot(getMotion().getPosition(), dir + Math.random() * scatterFactor * 2 - scatterFactor);
 		}
 	}
-
 	
 
 	//HasKeyEvent:
-	
 	
 
 	@Override
@@ -125,11 +120,9 @@ public class Hunter extends GameObject implements HasMouseEvent, HasKeyEvent, Ha
 
 	@Override
 	public void keyReleased(Integer code) {}
-
-
+	
 	
 	//HasAlarmEvent:
-	
 	
 
 	@Override

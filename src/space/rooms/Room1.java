@@ -42,8 +42,9 @@ public class Room1 implements Room {
 						  {8,3},
 						  {17,3},
 						  {14,3}};
-		for (int i = 1; i < coords.length; i++)
-			new Enemy(new Point(32 * coords[i][0], 32 * coords[i][1]));
+		for (int[] coord : coords){
+			new Enemy(new Point(32 * coord[0], 32 * coord[1]));
+		}
 	}
 
 	@Override
