@@ -1,17 +1,10 @@
-public static Class<? extends GameObject>[] getCollisionList(){
-		throw new IllegalStateException(" GameObject.getCollisionList() should be overidden by its subclasses");
-	}
-
-transparency:
-http://java.sun.com/products/jfc/tsc/articles/swing2d/index.html
-
-
-
-
 todo:
-
-transparent
-multiple rooms
-Alarm objects
-animation
-load ALL images beforehand
+    Animations/Sprites
+        transparency!
+            see http://java.sun.com/products/jfc/tsc/articles/swing2d/index.html
+        different hitboxes per animation frame?
+    Rooms
+        make into a base class
+    Alarm objects? Or just be able to reference by names instead of numbers?
+    make sure I'm loading ALL images beforehand
+    Add screenshotting feature
