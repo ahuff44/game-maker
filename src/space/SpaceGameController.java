@@ -26,7 +26,7 @@ public class SpaceGameController extends GameController{
 	}
 	 
 	public static void main(String[] args) {
-		setMainGame(new SpaceGameController("Space Game"));
+		setMainGame(new SpaceGameController("Space"));
 	}
 
 }

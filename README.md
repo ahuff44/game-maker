@@ -16,7 +16,7 @@ I messed around with a bunch of the flags available in javac and java, but I cou
 I personally compiled and ran everything in Eclipse for this project)
 
 In general, the control keys are the arrows keys, WASD, the space bar, and the left mouse button.
-At any time, pressing <esc> will exit the game and pressing <f1> will restart the game.
+At any time, pressing the escape key will exit the game and pressing the f1 key will restart the game.
 
 Frogger:
 -------
