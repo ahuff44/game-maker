@@ -13,6 +13,17 @@ public class Utilities {
 	}
 	
 	/**
+	 * Chooses a random point within a Rectangle
+	 * 
+	 * @param rect
+	 * @return A random point within the given rectangle
+	 */
+	public static Point randomPoint(Rectangle rect){
+		int x = (int) (Math.random() * (rect.width - 64) + 32);
+		int y = (int) (Math.random() * (rect.height - 64) + 32);
+		return new Point(x, y);
+	}
+	/**
 	 * Returns the distance in pixels from a to b.
 	 * @param a the first point
 	 * @param b the second point
@@ -124,15 +135,17 @@ public class Utilities {
 		return ((a == (int) a) && (b == (int) b));
 	}
 	
-	/*   TODO Motion needs to be more careful and user .clone() MUCH more
-	 * public static Point snapToGrid(Point position) {
-		return snapToGrid(position, GameController.getRoom().grid());
+
+	//   TODO Motion needs to be more careful and user .clone() MUCH more
+	public static Point snapToGrid(Point position) {
+		return snapToGrid(position, GameController.getRoom().getGrid());
 	}
-	
 	public static Point snapToGrid(Point position, Dimension dimension) {
-		position.x = ((motion().x() / 32) * 32);
-		position.setY((motion().y() / 32) * 32);
-	}*/
+		int new_x, new_y;
+		new_x = (int)(((int)(position.x / dimension.getWidth())) * dimension.getWidth());
+		new_y = (int)(((int)(position.y / dimension.getHeight())) * dimension.getHeight());
+		return new Point(new_x, new_y);
+	}
 	
 	public static boolean isInsideRoom(Point p){
 		Dimension d = GameController.getRoom().getSize();

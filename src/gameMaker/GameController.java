@@ -225,7 +225,6 @@ public abstract class GameController extends JFrame implements ActionListener, H
 		GameController gc = getMainGame();
 		//TODO make this work gc.intitializeListeners(gc.getContentPane()); , gc.initL
 		gc.initialize();
-
 	}
 
 	/**

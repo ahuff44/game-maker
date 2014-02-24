@@ -30,13 +30,14 @@ public class Room1 implements Room {
 	
 	@Override
 	public void load() {
-		new Frog(new Point(32 * 8, 32 * 19));
+		new Frog(new Point(32 * 8, 32 * 18));
 		new Road(new Point(0, 32 * 10));
+		new Road(new Point(0, 32 * 1));
 	}
 
 	@Override
 	public Dimension getSize() {
-		return new Dimension(32 * 15, 32 * 20);
+		return new Dimension(32 * 15, 32 * 19);
 	}
 
 	@Override

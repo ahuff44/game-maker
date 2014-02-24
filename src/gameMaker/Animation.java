@@ -1,18 +1,19 @@
 package gameMaker;
 
 import java.awt.Image;
+import java.awt.Point;
 
 public class Animation {
 
 	
 	//fields
 	
-	
+	//	TODO clearly separate this and Sprite
 	private Image[] images;
 	private int width = 0;
 	private int height = 0;
 	private int index;
-	
+
 	
 	//constructors
 	

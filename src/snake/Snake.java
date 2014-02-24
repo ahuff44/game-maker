@@ -23,9 +23,7 @@ public class Snake extends GameObject implements HasKeyEvent, HasAlarmEvent{
 	private int dir = 0;
 	private ArrayList<Body> body;
 	private AlarmController alarmController;
-	
-	private boolean grow = true;
-	
+		
 	//constructors
 	
 	
@@ -41,6 +39,10 @@ public class Snake extends GameObject implements HasKeyEvent, HasAlarmEvent{
 	//methods
 	
 	
+	private void new_food(){
+		Point pt = Utilities.randomPoint(GameController.getRoomRectangle());
+		new Food(Utilities.snapToGrid(pt));
+	}
 	
 	public void move(){
 		moveHead();
@@ -123,40 +125,44 @@ public class Snake extends GameObject implements HasKeyEvent, HasAlarmEvent{
 
 	
 	public static Class<? extends GameObject>[] getCollisionList(){
-		Class<?>[] list = {};
+		Class<?>[] list = {Food.class, Body.class};
 		return (Class<? extends GameObject>[]) list;
 	}
 	
 	@Override
 	public void collisionEvent(GameObject other) {
-//		if (other instanceof Car){
-//			destroy();
-//		}
+		if (other instanceof Body){
+			if (other != body.get(0)){ // if it's not the neck segment
+				destroy();
+			}
+		} else if (other instanceof Food){
+			other.destroy();
+			grow();
+			new_food();
+		}
 	}	
 
 	public void keyDown(Integer keyCode){
 		switch (keyCode){
+		case KeyEvent.VK_A:
 		case KeyEvent.VK_LEFT:
 			if (dir != 0)
 				dir = 180;
 			break;
+		case KeyEvent.VK_D:
 		case KeyEvent.VK_RIGHT:
 			if (dir != 180)
 				dir = 0;
 			break;
+		case KeyEvent.VK_W:
 		case KeyEvent.VK_UP:
 			if (dir != 270)
 				dir = 90;
 			break;
+		case KeyEvent.VK_S:
 		case KeyEvent.VK_DOWN:
 			if (dir != 90)
 				dir = 270;
-			break;
-		case KeyEvent.VK_ENTER:
-			grow = false;
-			break;
-		case KeyEvent.VK_SPACE:
-			Printer.println();
 			break;
 		default:
 			return;
@@ -175,9 +181,10 @@ public class Snake extends GameObject implements HasKeyEvent, HasAlarmEvent{
 	}
 	
 	public void createEvent() {
+		new_food();
+		
 		alarmController = new AlarmController(this);
-		alarmController.setAlarm(0, 5); //move
-		alarmController.setAlarm(1, 30); //grow
+		alarmController.setAlarm(0, 3); //move
 	}
 	
 	public void destroyEvent() {}
@@ -192,10 +199,6 @@ public class Snake extends GameObject implements HasKeyEvent, HasAlarmEvent{
 			move();
 			alarmController.resetAlarm(alarmId);
 			break;
-		case 1:
-			if (grow)
-				grow();
-			alarmController.resetAlarm(alarmId);
 		}
 	}
 

@@ -49,15 +49,19 @@ public class Frog extends GameObject implements HasKeyEvent, HasAlarmEvent {
 	public void keyDown(Integer keyCode){
 		Point p;
 		switch (keyCode){
+		case KeyEvent.VK_A:
 		case KeyEvent.VK_LEFT:
 			p = new Point(-32, 0);
 			break;
+		case KeyEvent.VK_D:
 		case KeyEvent.VK_RIGHT:
 			p = new Point(32, 0);
 			break;
+		case KeyEvent.VK_W:
 		case KeyEvent.VK_UP:
 			p = new Point(0, -32);
 			break;
+		case KeyEvent.VK_S:
 		case KeyEvent.VK_DOWN:
 			p = new Point(0, 32);
 			break;

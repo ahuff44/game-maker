@@ -1,6 +1,5 @@
 package gameMaker;
 
-//TODO add animation capability
 //TODO add custom sprites, using Shape
 
 import java.awt.Dimension;
@@ -62,7 +61,7 @@ public class Sprite {
 	
 	
 	//constructors
-	//TODO make a crapload of constructors that take lotsa arguments
+	//TODO make TONS of constructors that take lots of various combinations of arguments
 	
 	
 	//Image constructors

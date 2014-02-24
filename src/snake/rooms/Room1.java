@@ -30,13 +30,15 @@ public class Room1 implements Room {
 	
 	@Override
 	public void load() {
-		Body tail = new Body(new Point(320 - 32, 240));
-		new Snake(new Point(320, 240), tail);
+		int snake_x = 80;
+		int snake_y = 160;
+		Body tail = new Body(new Point(snake_x - 32, snake_y));
+		new Snake(new Point(snake_x, snake_y), tail);
 	}
 
 	@Override
 	public Dimension getSize() {
-		return new Dimension(640, 480);
+		return new Dimension(320, 320);
 	}
 
 	@Override

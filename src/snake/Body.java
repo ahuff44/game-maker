@@ -7,7 +7,7 @@ import java.awt.Point;
 import gameMaker.*;
 
 public class Body extends GameObject {
-
+	
 	private static final Image imgHoriz = GraphicsController.getImage("body\\horizontal.png");
 	private static final Image imgVert = GraphicsController.getImage("body\\vertical.png");
 
@@ -52,34 +52,26 @@ public class Body extends GameObject {
 	}
 	
 	@Override
-	public void collisionEvent(GameObject other) {
-		
-	}
+	public void collisionEvent(GameObject other) {}
 
 	@Override
-	public void createEvent() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void createEvent() {}
 
 	@Override
-	public void destroyEvent() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void destroyEvent() {}
 
 	@Override
-	public void intersectBoundaryEvent() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void intersectBoundaryEvent() {}
 
 	@Override
-	public void outsideRoomEvent() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void outsideRoomEvent() {}
 	
+	/**
+	 * Draw this body segment, interpreting it as the tail segment
+	 * 
+	 * @param g the graphics environment to draw in
+	 * @param front the segment that before this one
+	 */
 	public void drawTail(Graphics g, GameObject front) {
 		Image img = null;
 		int x = getMotion().getX();
@@ -87,10 +79,10 @@ public class Body extends GameObject {
 		int fx = front.getMotion().getX();
 		int fy = front.getMotion().getY();
 		if (x == fx){
-			if (y > fy)
-				img = imgTailUp;
-			else if (y > fy)
+			if (y < fy)
 				img = imgTailDown;
+			else if (y > fy)
+				img = imgTailUp;
 		} else if (y == fy){
 			if (x < fx)
 				img = imgTailRight;
@@ -100,6 +92,13 @@ public class Body extends GameObject {
 		getSprite().setImage(img);
 	}
 		
+	/**
+	 * Draw this body segment, interpreting it as any segment besides the tail
+	 * 
+	 * @param g the graphics environment to draw in
+	 * @param back the body segment after this one
+	 * @param front the body segment before this one
+	 */
 	public void drawBody(Graphics g, GameObject back, GameObject front) {
 		Image img = null;
 		int x = getMotion().getX();

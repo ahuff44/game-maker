@@ -4,8 +4,6 @@ import java.awt.Image;
 import java.awt.Point;
 
 import gameMaker.*;
-import huntingGame.Bird;
-import huntingGame.Tiger;
 
 public class Road extends GameObject implements HasAlarmEvent{
 
@@ -23,18 +21,12 @@ public class Road extends GameObject implements HasAlarmEvent{
 	}
 	
 	@Override
-	public void collisionEvent(GameObject other) {
-		// TODO Auto-generated method stub
-
-	}
-	
-	
-	
+	public void collisionEvent(GameObject other) {}
 	
 	@Override
 	public void createEvent() {
 		alarmController = new AlarmController(this);
-		alarmController.setAlarm(0, 6); //car creation
+		alarmController.setAlarm(0, 10); //car creation
 	}
 	
 	
@@ -53,36 +45,31 @@ public class Road extends GameObject implements HasAlarmEvent{
 	}
 	
 	
+	@Override
+	public void destroyEvent() {}
 
 	@Override
-	public void destroyEvent() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void intersectBoundaryEvent() {}
 
 	@Override
-	public void intersectBoundaryEvent() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void outsideRoomEvent() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void outsideRoomEvent() {}
 	
 	private void createCar() {
-		int x = Utilities.choose(new int[] {0, 480});
-		int y = ((int) (Math.random() * 8)) * 32;
-
-		int dir = 0;
-		if (x == 480)
+		int x, dir;
+		int y = ((int) (Math.random() * 4)) * 64;
+		int odd_lane = Utilities.choose(new int[] {1, 0});
+		if (odd_lane == 1){
+			x = 480;
 			dir = 180;
-		
-		Motion carMotion = new Motion(getMotion().relativePoint(x, y));
+			y += 32;
+		} else {
+			x = 0;
+			dir = 0;
+		}
+		Point creationPoint = getMotion().relativePoint(x, y);
+		Motion carMotion = new Motion(creationPoint);
 		carMotion.setDirection(dir);
-		new Car(carMotion);
+		new Car(carMotion, odd_lane==1);
 	}
 
 }

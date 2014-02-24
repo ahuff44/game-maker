@@ -6,39 +6,31 @@ import gameMaker.*;
 
 public class Car extends GameObject {
 
-	private static final Image carImg = GraphicsController.getImage("car.png");
+	private static final Image imgCarLeft = GraphicsController.getImage("carLeft.png");
+	private static final Image imgCarRight = GraphicsController.getImage("carRight.png");
 
-	public Car(Motion m){
-		super(true, m, new Sprite(carImg, 50));
+	public Car(Motion m, boolean goingLeft){
+		super(true, m, new Sprite(goingLeft ? imgCarLeft : imgCarRight, 50));
 	}
 	
 	public static Class<? extends GameObject>[] getCollisionList(){
-		Class<?>[] list = {Car.class};
+		Class<?>[] list = {};
 		return (Class<? extends GameObject>[]) list;
 	}
 	
 	@Override
-	public void collisionEvent(GameObject other) {
-//		if (other instanceof Car)
-//			destroy();
-	}
-
+	public void collisionEvent(GameObject other) {}
+	
 	@Override
 	public void createEvent() {
 		getMotion().setSpeed(8);
 	}
 
 	@Override
-	public void destroyEvent() {
-		// create an explosion
-		
-	}
+	public void destroyEvent() {}
 
 	@Override
-	public void intersectBoundaryEvent() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void intersectBoundaryEvent() {}
 
 	@Override
 	public void outsideRoomEvent() {
