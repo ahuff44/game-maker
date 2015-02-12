@@ -11,9 +11,7 @@ These examples are in no way meant to be complete, polished games; their job is 
 
 Make sure when you run these classes that you first compile the gameMaker package.
 Then, when compiling one of these games, make sure the gameMaker package is on the classpath.
-(To be honest, I'm not entirely sure how to launch one of these games from the command line.
-I messed around with a bunch of the flags available in javac and java, but I couldn't get it to work.
-I personally compiled and ran everything in Eclipse for this project)
+(I used Eclipse to compile and run this project)
 
 In general, the control keys are the arrows keys, WASD, the space bar, and the left mouse button.
 At any time, pressing the escape key will exit the game and pressing the f1 key will restart the game.
